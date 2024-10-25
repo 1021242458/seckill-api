@@ -26,7 +26,7 @@ public class UserController {
 
     @PostMapping("/register")
     public Result register(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password) {
-
+        System.out.println("register  username:"+username+"passwprd:"+password);
         User u = userService.findByUserName(username);
         if (u == null) {
             userService.register(username, password);
@@ -38,6 +38,7 @@ public class UserController {
 
     @PostMapping("/login")
     public Result<String> login(@Pattern(regexp = "^\\S{5,16}$") String username, @Pattern(regexp = "^\\S{5,16}$") String password){
+        System.out.println("login  username:"+username+"passwprd:"+password);
         User loginUser = userService.findByUserName(username);
 //        System.out.println(username);
 //        System.out.println(loginUser);
