@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yang.seckillapi.mapper.ProductMapper">
+    <!-- 动态sql -->
+    <select id="list" resultType="com.yang.seckillapi.pojo.Product">
+        select * from product
+        <where>
+            <if test="keyword != null">
+                AND name LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="minPrice != null">
+                AND price &gt;= #{minPrice}
+            </if>
+            <if test="maxPrice != null">
+                AND price &lt;= #{maxPrice}
+            </if>
+        </where>
+    </select>
+</mapper>
